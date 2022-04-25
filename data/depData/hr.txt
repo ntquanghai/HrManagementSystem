@@ -1,0 +1,1 @@
+{"id": 3, "name": "HR", "empNumber": 0, "salaryRate": {"entry": 1, "jr": 2, "sr": 3, "leader": 4, "manager": 5}}

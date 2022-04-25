@@ -1,0 +1,1 @@
+{"id": 5, "name": "Executives", "empNumber": 0, "salaryRate": {"cob": 1, "ceo": 2, "coo": 3, "cfo": 4, "chro": 5, "cmo": 6, "cio": 7}}
