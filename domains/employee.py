@@ -1,6 +1,7 @@
 import json
 import datetime
 import pickle
+import os
 
 hierarchy = [
     {
@@ -8,11 +9,11 @@ hierarchy = [
         "name": "Marketing",
         "empNumber": 0,
         "salaryRate": {
-            "entry":1,
-            "jr":2,
-            "sr":3,
-            "leader":4,
-            "manager":5,
+            "entry": 1,
+            "jr": 2,
+            "sr": 3,
+            "leader": 4,
+            "manager": 5,
         }
     },
     {
@@ -20,11 +21,11 @@ hierarchy = [
         "name": "IT",
         "empNumber": 0,
         "salaryRate": {
-            "entry":1,
-            "jr":2,
-            "sr":3,
-            "leader":4,
-            "manager":5,
+            "entry": 1,
+            "jr": 2,
+            "sr": 3,
+            "leader": 4,
+            "manager": 5,
         }
     },
     {
@@ -32,22 +33,22 @@ hierarchy = [
         "name": "Finance",
         "empNumber": 0,
         "salaryRate": {
-            "entry":1,
-            "jr":2,
-            "sr":3,
-            "leader":4,
-            "manager":5,
+            "entry": 1,
+            "jr": 2,
+            "sr": 3,
+            "leader": 4,
+            "manager": 5,
         }
-    },{
+    }, {
         "id": 3,
         "name": "HR",
         "empNumber": 0,
         "salaryRate": {
-            "entry":1,
-            "jr":2,
-            "sr":3,
-            "leader":4,
-            "manager":5,
+            "entry": 1,
+            "jr": 2,
+            "sr": 3,
+            "leader": 4,
+            "manager": 5,
         }
     },
     {
@@ -55,11 +56,11 @@ hierarchy = [
         "name": "Operations",
         "empNumber": 0,
         "salaryRate": {
-            "entry":1,
-            "jr":2,
-            "sr":3,
-            "leader":4,
-            "manager":5,
+            "entry": 1,
+            "jr": 2,
+            "sr": 3,
+            "leader": 4,
+            "manager": 5,
         }
     },
     {
@@ -67,13 +68,13 @@ hierarchy = [
         "name": "Executives",
         "empNumber": 0,
         "salaryRate": {
-            "cob":1,
-            "ceo":2,
-            "coo":3,
-            "cfo":4,
-            "chro":5,
-            "cmo":6,
-            "cio":7,
+            "cob": 1,
+            "ceo": 2,
+            "coo": 3,
+            "cfo": 4,
+            "chro": 5,
+            "cmo": 6,
+            "cio": 7,
         }
     }
 ]
@@ -98,6 +99,7 @@ hierarchy = [
 #         with open("data\executives.txt","w") as f:
 #             f.write(json.dumps(hierarchy[5]))
 
+
 class Employee:
     def __init__(self, id, name, dob, email, pos, salary, dep):
         self.id = id
@@ -108,26 +110,38 @@ class Employee:
         self.salary = salary
         self.dep = dep
 
-    def newEmp():
-        id = input("Enter the employee's ID: ")
-        name = input("Enter the employee's name: ")
-        dob = Employee.setDob()
-        email = input("Enter the employere's email: ")
-        dep = input("Enter the employee's department: ")
-        pos = input("Enter the employee's position: ")
-        salary = Employee.getSalary(dep,pos)
+    # def newEmp(self):
+    #     id = input("Enter the employee's ID: ")
+    #     name = input("Enter the employee's name: ")
+    #     dob = Employee.setDob(self)
+    #     email = input("Enter the employere's email: ")
+    #     dep = input("Enter the employee's department: ")
+    #     pos = input("Enter the employee's position: ")
+    #     salary = Employee.getSalary(dep, pos)
 
-        with open('myfile.pkl', 'ab') as f:
-            pickle.dump(Employee(id,name,dob,email,pos,salary,dep), f)
+    #     with open('data\empData\empData.pkl', 'r+b') as f:
+    #         filesize = os.path.getsize("data\empData\empData.pkl")
+    #         if(filesize == 0):
+    #             data = []
+    #             data.append(Employee(id, name, dob, email, pos, salary, dep))
+    #             pickle.dump(data, f)
+    #         else:
+    #             picData = pickle.load(f)
 
-        return Employee(id,name,dob,email,pos,salary,dep)
-    
+    #     return Employee(id, name, dob, email, pos, salary, dep)
+
+    def find(lst, key, value):
+        for i, dic in enumerate(lst):
+            if dic[key] == value:
+                return i
+        return -1
+
     def setDob():
         dayFlag = True
-        while(dayFlag): 
+        while(dayFlag):
             dayInput = int(input("Enter the student's day of birth: "))
             if(isinstance(int(dayInput), int)):
-                if(int(dayInput)<32 and int(dayInput)>0):
+                if(int(dayInput) < 32 and int(dayInput) > 0):
                     dayFlag = False
                 else:
                     print("Entred day was invalid. Please try again.")
@@ -137,9 +151,9 @@ class Employee:
         while(monthFlag):
             monthInput = int(input("Enter the student's month of birth: "))
             if(isinstance(int(monthInput), int)):
-                if(int(monthInput) == 2 and int(dayInput)>29):
-                    print("Entered month was invalid. Please try again")    
-                elif(int(monthInput)<13 and int(monthInput)>0):
+                if(int(monthInput) == 2 and int(dayInput) > 29):
+                    print("Entered month was invalid. Please try again")
+                elif(int(monthInput) < 13 and int(monthInput) > 0):
                     monthFlag = False
                 else:
                     print("Entered month was invalid. Please try again")
@@ -147,30 +161,34 @@ class Employee:
         while(yearFlag):
             yearInput = int(input("Enter student's year of birth: "))
             if(isinstance((yearInput), int)):
-                if(yearInput<1900 or yearInput>int(datetime.datetime.now().strftime("%Y"))-18):
+                if(yearInput < 1900 or yearInput > int(datetime.datetime.now().strftime("%Y"))-18):
                     print("Enter year was invalid. Please try again.")
                 else:
                     yearFlag = False
         returnedValue = str(dayInput)+"/"+str(monthInput)+"/"+str(yearInput)
         return returnedValue
 
-    def find(lst, key, value):
-        for i, dic in enumerate(lst):
-            if dic[key] == value:
-                return i
-        return -1
-
-    def getSalary(dep,pos):
-        with open("data/depData/"+dep.lower()+".txt","r") as f:
+    def getSalary(dep, pos):
+        with open("data/depData/"+dep.lower()+".txt", "r") as f:
             data = json.loads(f.read())
             return data["salaryRate"][pos.lower()]
-    
-f = open("myfile.pkl","rb")
-while True:
-    try:
-        pic = pickle.load(f)
-        print(pic.name)
-    except EOFError:
-        print('Pickle ends')
-        break
+
+    def setName(self, name):
+        self.name = name
+
+    def setNewDob(self):
+        newDob = Employee.setDob()
+        self.dob = newDob
+
+    def setEmail(self, email):
+        self.email = email
+
+    def setDep(self, dep):
+        self.dep = dep
+
+    def setPos(self, pos):
+        self.pos = pos
+
+    def setSalary(self):
+        Employee.getSalary(self.dep, self.pos)
 
