@@ -110,26 +110,6 @@ class Employee:
         self.salary = salary
         self.dep = dep
 
-    # def newEmp(self):
-    #     id = input("Enter the employee's ID: ")
-    #     name = input("Enter the employee's name: ")
-    #     dob = Employee.setDob(self)
-    #     email = input("Enter the employere's email: ")
-    #     dep = input("Enter the employee's department: ")
-    #     pos = input("Enter the employee's position: ")
-    #     salary = Employee.getSalary(dep, pos)
-
-    #     with open('data\empData\empData.pkl', 'r+b') as f:
-    #         filesize = os.path.getsize("data\empData\empData.pkl")
-    #         if(filesize == 0):
-    #             data = []
-    #             data.append(Employee(id, name, dob, email, pos, salary, dep))
-    #             pickle.dump(data, f)
-    #         else:
-    #             picData = pickle.load(f)
-
-    #     return Employee(id, name, dob, email, pos, salary, dep)
-
     def find(lst, key, value):
         for i, dic in enumerate(lst):
             if dic[key] == value:
