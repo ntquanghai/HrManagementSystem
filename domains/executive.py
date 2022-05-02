@@ -46,7 +46,7 @@ class Executive(DepLeader):
             f.write(json.dumps(data))
 
     def newManager(self):
-        name = input("Enter the manager's name: ")
+        name = Employee.initName()
         dob = Employee.setDob()
         dep = input("Enter the manager's department: ")
         pos = "manager"

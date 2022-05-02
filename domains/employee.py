@@ -153,22 +153,28 @@ class Employee:
             data = json.loads(f.read())
             return data["salaryRate"][pos.lower()]
 
-    def setName(self, name):
-        self.name = name
-
     def setNewDob(self):
         newDob = Employee.setDob()
         self.dob = newDob
-
-    def setEmail(self, email):
-        self.email = email
-
-    def setDep(self, dep):
-        self.dep = dep
-
-    def setPos(self, pos):
-        self.pos = pos
+    
+    def initName(self):
+        while True:
+            firstName = input("Enter first name: ")
+            if(firstName.isalpha()):
+                break
+            else:
+                print("Invalid input. Please try again")
+        while True:
+            lastName = input("Enter last name: ")
+            if(firstName.isalpha()):
+                break
+            else:
+                print("Invalid input. Please try again")
+        fullName = firstName + " " + lastName
+        return fullName
 
     def setSalary(self):
         Employee.getSalary(self.dep, self.pos)
 
+s1 = ""
+print(s1.isalpha())

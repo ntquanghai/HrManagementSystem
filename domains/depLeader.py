@@ -32,7 +32,7 @@ class DepLeader(Employee):
             f.write(json.dumps(utils.sortListInDict(data,"id")))
 
     def newEmp(self):
-        name = input("Enter the employee's name: ")
+        name = Employee.initName()
         dob = Employee.setDob()
         dep = DepLeader.getDep(self)
         pos = input("Enter the employee's position: ")

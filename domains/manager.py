@@ -12,7 +12,7 @@ class Manager(DepLeader):
         self.pos = "manager"
 
     def newDepLeader(self):
-        name = input("Enter the employee's name: ")
+        name = Employee.initName()
         dob = Employee.setDob()
         dep = input("Enter the manager's department: ")
         pos = "leader"
