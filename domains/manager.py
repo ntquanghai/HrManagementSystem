@@ -12,11 +12,9 @@ class Manager(DepLeader):
         self.pos = "manager"
 
     def newDepLeader(self):
-        id = input("Enter the employee's ID: ")
         name = input("Enter the employee's name: ")
         dob = Employee.setDob()
-        email = input("Enter the employere's email: ")
-        dep = DepLeader.getDep(self)
+        dep = input("Enter the manager's department: ")
         pos = "leader"
         salary = Employee.getSalary(dep,pos)
 
@@ -24,7 +22,8 @@ class Manager(DepLeader):
             with open('data\empData\empData.txt', 'w+') as f:
                 wrapper = []
                 currData = {}
-                pic = DepLeader(id,name,dob,email,pos,salary,dep)
+                email = utils.emailName(name)+"."+"er-1"+"@gmail.com"
+                pic = DepLeader("ER-1",name,dob,email,pos,salary,dep)
                 currData["name"] = pic.name
                 currData["id"] = pic.id
                 currData["dob"] = pic.dob
@@ -37,6 +36,8 @@ class Manager(DepLeader):
         else:
             with open('data\empData\empData.txt', 'r+') as f:
                 picData = json.loads(f.read())
+                id = "ER-"+str(utils.getIdNum(picData[-1]["id"])+1)
+                email = utils.emailName(name)+"."+id.lower()+"@gmail.com"
                 pic = DepLeader(id,name,dob,email,pos,salary,dep)
                 currData = {}
                 currData["name"] = pic.name

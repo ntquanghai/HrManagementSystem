@@ -9,6 +9,21 @@ def find(lst, key, value):
                 return i
         return -1
 
+def emailName(string):
+    stripedString = string.strip().replace(' ',"").lower()
+    return stripedString
+
+def getIdNum(arr):
+    index = -1
+    idNum = ""
+    while True:
+        if(arr[index] == "-"):
+            break
+        else:
+            idNum = arr[index]+idNum
+            index = index - 1
+    return int(idNum)
+
 def loadData(path):
     if(getFileType(path) == ".txt"):
         with open(path,"r") as f:

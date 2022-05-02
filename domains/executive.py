@@ -4,6 +4,7 @@ import json
 from employee import Employee
 import utils
 import os
+from manager import Manager
 
 class Executive(DepLeader):
     def __init__(self, id, name, dob, email, pos, salary):
@@ -45,11 +46,9 @@ class Executive(DepLeader):
             f.write(json.dumps(data))
 
     def newManager(self):
-        id = input("Enter the manager's ID: ")
         name = input("Enter the manager's name: ")
         dob = Employee.setDob()
-        email = input("Enter the manager's email: ")
-        dep = ("Enter the manager's department: ")
+        dep = input("Enter the manager's department: ")
         pos = "manager"
         salary = Employee.getSalary(dep,pos)
 
@@ -57,7 +56,8 @@ class Executive(DepLeader):
             with open('data\empData\empData.txt', 'w+') as f:
                 wrapper = []
                 currData = {}
-                pic = Executive(id,name,dob,email,pos,salary,dep)
+                email = utils.emailName(name)+"."+"er-1"+"@gmail.com"
+                pic = Manager("ER-1",name,dob,email,pos,salary,dep)
                 currData["name"] = pic.name
                 currData["id"] = pic.id
                 currData["dob"] = pic.dob
@@ -70,7 +70,9 @@ class Executive(DepLeader):
         else:
             with open('data\empData\empData.txt', 'r+') as f:
                 picData = json.loads(f.read())
-                pic = Executive(id,name,dob,email,pos,salary,dep)
+                id = "ER-"+str(utils.getIdNum(picData[-1]["id"])+1)
+                email = utils.emailName(name)+"."+id.lower()+"@gmail.com"
+                pic = Manager(id,name,dob,email,pos,salary,dep)
                 currData = {}
                 currData["name"] = pic.name
                 currData["id"] = pic.id

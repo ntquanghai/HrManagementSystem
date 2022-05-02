@@ -32,10 +32,8 @@ class DepLeader(Employee):
             f.write(json.dumps(utils.sortListInDict(data,"id")))
 
     def newEmp(self):
-        id = input("Enter the employee's ID: ")
         name = input("Enter the employee's name: ")
         dob = Employee.setDob()
-        email = input("Enter the employere's email: ")
         dep = DepLeader.getDep(self)
         pos = input("Enter the employee's position: ")
         salary = Employee.getSalary(dep,pos)
@@ -44,7 +42,8 @@ class DepLeader(Employee):
             with open('data\empData\empData.txt', 'w+') as f:
                 wrapper = []
                 currData = {}
-                pic = Employee(id,name,dob,email,pos,salary,dep)
+                email = utils.emailName(name)+"."+"er-1"+"@gmail.com"
+                pic = Employee("ER-1",name,dob,email,pos,salary,dep)
                 currData["name"] = pic.name
                 currData["id"] = pic.id
                 currData["dob"] = pic.dob
@@ -57,6 +56,9 @@ class DepLeader(Employee):
         else:
             with open('data\empData\empData.txt', 'r+') as f:
                 picData = json.loads(f.read())
+                id = "ER-"+str(utils.getIdNum(picData[-1]["id"])+1)
+                print(picData[-1])
+                email = utils.emailName(name)+"."+id.lower()+"@gmail.com"
                 pic = Employee(id,name,dob,email,pos,salary,dep)
                 currData = {}
                 currData["name"] = pic.name
@@ -117,9 +119,10 @@ class DepLeader(Employee):
 
     def listEmp(self):
         data = utils.loadData("data\empData\empData.txt")
+        print(data)
         returnedList = []
         for i in range(0,len(data)):
-            if(data[i]["dep"].lower() == DepLeader.getDep(self)):
+            if(data[i]["dep"].lower() == DepLeader.getDep(self).lower()):
                 returnedList.append(data[i])
         return returnedList
 
@@ -127,7 +130,9 @@ class DepLeader(Employee):
         return self.dep
 
 
-# la = DepLeader("1","1","29/03/2003","ntqhai2002@gmail.com","manager",2,"IT")
-# la.newEmp()
-# print(la.searchById())
-# la.promote()
+la = DepLeader("1","1","29/03/2003","ntqhai2002@gmail.com","manager",2,"IT")
+la.newEmp()
+# # print(la.searchById())
+# # la.promote()
+# print(la.listEmp())
+
